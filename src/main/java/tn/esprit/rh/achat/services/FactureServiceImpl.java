@@ -51,7 +51,7 @@ public class FactureServiceImpl implements IFactureService {
 			//Récuperer le produit 
 			
 			//Calculer le montant total pour chaque détail Facture
-			float prixTotalDetail = detail.getQteCommandee() * produit.getPrix();
+			//float prixTotalDetail = detail.getQteCommandee() * produit.getPrix();
 			//Calculer le montant remise pour chaque détail Facture
 			float montantRemiseDetail = (prixTotalDetail * detail.getPourcentageRemise()) / 100;
 			float prixTotalDetailRemise = prixTotalDetail - montantRemiseDetail;
