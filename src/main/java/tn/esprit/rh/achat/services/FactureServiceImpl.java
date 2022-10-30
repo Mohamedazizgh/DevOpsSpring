@@ -20,7 +20,8 @@ public class FactureServiceImpl implements IFactureService {
 	
 	@Autowired
 	DetailFactureRepository detailFactureRepository;
-
+@Autowired
+	FactureRepository factureRepository;
 	
     @Autowired
     ReglementServiceImpl reglementService;
