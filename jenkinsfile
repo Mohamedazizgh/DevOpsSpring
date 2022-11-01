@@ -8,7 +8,7 @@ pipeline {
             steps {
             
                 git branch: 'Ameni', url: 'https://github.com/Mohamedazizgh/DevOpsSpring.git',
-              
+                credentialsId:"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";
                 
             }
 }
