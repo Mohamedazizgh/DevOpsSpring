@@ -7,6 +7,6 @@ pipeline {
             steps {
                 git branch: 'Ameni', url: 'https://github.com/Mohamedazizgh/DevOpsSpring.git'  
             }
-}
-}
+          }
+                             }
 }
