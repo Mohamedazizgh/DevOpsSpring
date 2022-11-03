@@ -87,6 +87,11 @@
         <artifactId>sonar-maven-plugin</artifactId>
         <version>3.7.0.1746</version>
       </plugin>
+			<plugin>
+        <groupId>org.sonatype.nexus</groupId>
+        <artifactId>nexus-plugin-bundle-maven-plugin</artifactId>
+        <extensions>true</extensions>
+      </plugin>
 		</plugins>
 	</build>
 
