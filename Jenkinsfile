@@ -60,8 +60,16 @@ pipeline {
         steps{
            sh ' docker build -t achat/achat-1.0 .'
         }
+        } 
+           stage("Publish  image to docker hub") {
+        steps{
+         withCredentials([string(credentialsId: 'dockerhub_pwd', variable: 'dockerhub')]) {
+             sh'docker login -u achat -p ${dockerhub}'
+         }
+            sh' docker push achat '
         }
-    
+        }
+   
        
       
     }
