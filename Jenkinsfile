@@ -58,7 +58,7 @@ pipeline {
         }
           stage("Build docker image") {
         steps{
-           sh 'sudo docker build -t javatechie/achat .'
+           sh 'sudo docker build -t achat/achat .'
         }
         }
     
