@@ -1,4 +1,4 @@
 FROM openjdk:11
-ADD target/achat.jar achat.jar
+ADD target/achat-1.0.jar achat-1.0.jar
 EXPOSE 80
-ENTRYPOINT ["java", "-jar", "achat.jar"]
+ENTRYPOINT ["java", "-jar", "achat-1.0.jar"]
