@@ -38,6 +38,23 @@ pipeline {
                 
             }
         }
+          stage("Sonar") {
+        steps {
+
+       sh "mvn clean verify  sonar:sonar \
+  -Dsonar.projectKey=Aziz \
+  -Dsonar.host.url=http://192.168.112.65:9000 \
+  -Dsonar.login=9e592a527675c41a4306af79277e2cd66a84415a \
+  -Dsonar.java.binaries=src/main "
+  
+  
+               }
+     }
+        stage("nexus") {
+        steps{
+           sh 'mvn deploy:deploy-file -DgroupId=tn.esprit.rh -DartifactId=achat -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.112.65:8081/repository/maven-releases/  -Dfile=target/achat-1.0.jar'
+        }
+        }
 
     }
 }
