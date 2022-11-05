@@ -58,7 +58,7 @@ pipeline {
         }
           stage("Build docker image") {
         steps{
-           sh 'sudo docker build -t achat/achat .'
+           sh ' docker build -t achat/achat-1.0 .'
         }
         }
     
