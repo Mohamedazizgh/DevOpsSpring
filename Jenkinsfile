@@ -66,7 +66,7 @@ pipeline {
          withCredentials([string(credentialsId: 'dockerpwd', variable: 'docker')])  {
              sh'docker login -u  mhamedazizghorbel -p ${docker}'
          }
-            sh' docker push achat/achat-1.0'
+            sh' docker push mhamedazizghorbel/achat/achat-1.0'
         }
         }
    
