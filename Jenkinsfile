@@ -64,9 +64,9 @@ pipeline {
            stage("Publish  image to docker hub") {
         steps{
          withCredentials([string(credentialsId: 'dockerpwd', variable: 'docker')])  {
-             sh'docker login -u  mhamedazizghorbel -p ${docker}'
+             sh'docker login -u  mhamedazizghorbel -p ${docker} docker.io'
          }
-            sh' docker push mhamedazizghorbel/achat:0.0.1'
+            sh' docker push achat/achat-1.0:0.0.1'
         }
         }
    
