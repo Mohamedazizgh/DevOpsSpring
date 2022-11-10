@@ -55,13 +55,6 @@
 		</dependency>
 
 	</dependencies>
-	<distributionManagement>
-    <snapshotRepository>
-    <id>nexus-snapshots</id>
-    <url>http://192.168.1.17:8081/repository/maven-releases/</url>
-    </snapshotRepository>
-  </distributionManagement>
-
 	<build>
 		<plugins>
 			<plugin>
