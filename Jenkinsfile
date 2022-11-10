@@ -69,6 +69,12 @@ pipeline {
             sh' docker push mhamedazizghorbel/achat-1.0:latest'
         }
         }
+         stage('DOCKER COMPOSE') {
+                 steps {
+		      
+                      sh 'docker-compose up -d --build'
+                   }
+              }
    
        
       
