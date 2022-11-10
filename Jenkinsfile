@@ -3,7 +3,7 @@ pipeline {
 
     stages {
         
-                stage('get from git ') {
+                stage('get  git ') {
             steps {
             
                 git branch: 'Aziz', url: 'https://github.com/Mohamedazizgh/DevOpsSpring.git',
