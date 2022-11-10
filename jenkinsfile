@@ -38,16 +38,16 @@ pipeline {
                 
             }
         }
-          stage("build & SonarQube analysis") {
-            steps {
-                withSonarQubeEnv('My SonarQube Server') {
-                    // Optionally use a Maven environment you've configured already
-                    withMaven(maven:'Maven 3.7') {
-                        sh 'mvn clean package sonar:sonar'
-                    }
-                }
-            }
-     }
+           stage('SonarQube analysis') {
+//    def scannerHome = tool 'SonarScanner 4.0';
+        steps{
+        withSonarQubeEnv('sonarqube-8.9.7') { 
+        // If you have configured more than one global server connection, you can specify its name
+//      sh "${scannerHome}/bin/sonar-scanner"
+        sh "mvn sonar:sonar"
+    }
+        }
+        }
              stage("nexus") {
         steps{
           sh 'mvn deploy  -DgroupId=tn.esprit.rh -DartifactId=achat -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.112.210:8081/repository/maven-releases/  -Dfile=target/achat-1.0.jar'
