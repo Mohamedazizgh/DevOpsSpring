@@ -19,14 +19,8 @@
 	</properties>
 	
 	<distributionManagement>
-     
-       <repository>
-         <id>deploymentRepo </id>
-         <name>maven-releases</name>
-         <url>http://192.168.1.19:8081/repository/maven-releases/</url>
-       </repository>
-   </distributionManagement>
-  
+       
+    </distributionManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -63,11 +57,6 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>3.0.0</version>
 		</dependency>
-		<dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-embedder</artifactId>
-      <version>3.1.0</version>
-      </dependency>
 
 	</dependencies>
 
