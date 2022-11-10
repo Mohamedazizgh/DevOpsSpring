@@ -42,7 +42,6 @@ pipeline {
         steps {
 
        sh "mvn clean install  sonar:sonar \
- mvn sonar:sonar \
   -Dsonar.projectKey=Achat \
   -Dsonar.host.url=http://192.168.112.65:9000 \
   -Dsonar.login=ab8fe572293d73d97439de2a1bc96e0bb27c53a5 \
