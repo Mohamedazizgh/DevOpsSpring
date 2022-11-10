@@ -41,7 +41,7 @@ pipeline {
           stage("Sonar") {
         steps {
 
-       sh "mvn clean verify  sonar:sonar \
+       sh "mvn clean sonar:sonar \
  mvn sonar:sonar \
   -Dsonar.projectKey=Achat \
   -Dsonar.host.url=http://192.168.112.65:9000 \
