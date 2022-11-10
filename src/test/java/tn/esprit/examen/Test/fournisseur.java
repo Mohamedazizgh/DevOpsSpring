@@ -1,4 +1,4 @@
-package tn.esprit.examen.Test;
+package tn.esprit.rh.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -52,30 +52,6 @@ public class fournisseur {
 		assertEquals(0, response.size());
 	}
 	
-	@Test
-	void test_addFournisseur_ok() {
-		Fournisseur f= new Fournisseur();
-		f.setIdReglement(1L);
-		//mock
-		when(fournisseurRepository.save(any())).thenReturn(r);	
-		//call function 
-		fournisseurServiceImpl.addFournisseur(new Fournisseur());
-		
-		//assert
-		assertEquals(1L, f.getidFournisseur());
-		}
 	
-	
-	
-	
-	public void delete() {
-	 	
-		Fournisseur f = fournisseurRepository.findById(1L).get();	
-		fournisseurRepository.delete(f);
-		fournisseurServiceImpl.deleteFournisseur(null);
-		
-	}
-	
-
 	
 }
