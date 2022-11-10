@@ -57,7 +57,13 @@ pipeline {
             steps{
                 sh """mvn deploy """
             }
-        }       
+        } 
+        
+        stage("Docker Image") {
+        steps{
+           sh ' docker build -t snoussi22/achat-1.0:latest .'
+        }
+        } 
         
   
             
