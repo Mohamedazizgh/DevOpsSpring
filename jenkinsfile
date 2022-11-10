@@ -39,16 +39,10 @@ pipeline {
             }
         }
           stage("Sonar") {
-        steps {
-
-       sh "mvn clean verify  sonar:sonar \
- -Dsonar.projectKey=product \
-  -Dsonar.host.url=http://192.168.112.210:9000 \
-  -Dsonar.login=8f5d290f66fbc030fa053b742d2bc91259ea185b \
-  -Dsonar.java.binaries=src/main "
-  
-  
-               }
+         steps {
+              withSonarQubeEnv('My SonarQube Server') {
+                sh 'mvn clean package sonar:sonar'
+              }
      }
              stage("nexus") {
         steps{
