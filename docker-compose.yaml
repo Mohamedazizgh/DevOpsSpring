@@ -7,7 +7,7 @@ mysqldb:
   ports:
    - 3306:3306
   volumes:
-   - /home/ProjetDevops/volsql/data:/var/lib/mysql
+   - /home/ProjetDevops/data:/var/lib/mysql
  spring_app:
   image: mhamedazizghorbel/achat-1.0
   container_name: mhamedazizghorbel/achat-1.0
