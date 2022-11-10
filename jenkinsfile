@@ -12,38 +12,15 @@ pipeline {
                 
             }
 }
-   stage('MVN Package'){
-            steps {
-                sh """mvn -version  """
-                sh """java -version """
-               sh """mvn package -e """
-            }
-        }
-        
-      stage("MVN Compile"){
-            steps {
-                sh """mvn compile -e """
-                
-            }
-        }
-           stage("MVN Install"){
-            steps {
-                sh """mvn install """
-                
-            }
-        }
-        stage("MVN Clean"){
+         stage("MVN Clean"){
             steps {
                 sh """mvn clean -e """
                 
             }
         }
            stage('SonarQube analysis') {
-//    def scannerHome = tool 'SonarScanner 4.0';
         steps{
         withSonarQubeEnv('sonarqube-8.9.7') { 
-        // If you have configured more than one global server connection, you can specify its name
-//      sh "${scannerHome}/bin/sonar-scanner"
         sh "mvn sonar:sonar"
     }
         }
