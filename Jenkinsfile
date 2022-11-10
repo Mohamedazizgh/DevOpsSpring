@@ -42,9 +42,10 @@ pipeline {
         steps {
 
        sh "mvn clean verify  sonar:sonar \
-  -Dsonar.projectKey=Aziz \
+ mvn sonar:sonar \
+  -Dsonar.projectKey=Achat \
   -Dsonar.host.url=http://192.168.112.65:9000 \
-  -Dsonar.login=9e592a527675c41a4306af79277e2cd66a84415a \
+  -Dsonar.login=ab8fe572293d73d97439de2a1bc96e0bb27c53a5
   -Dsonar.java.binaries=src/main "
   
   
