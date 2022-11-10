@@ -72,7 +72,7 @@ public class fournisseur {
 	 	
 		Fournisseur f = fournisseurRepository.findById(1L).get();	
 		fournisseurRepository.delete(f);
-		fournisseurServiceImpl.deleteFournisseur(null)
+		fournisseurServiceImpl.deleteFournisseur(null);
 		
 	}
 	
