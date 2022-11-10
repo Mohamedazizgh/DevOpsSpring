@@ -10,7 +10,7 @@ mysqldb:
    - /home/ProjetDevops/data:/var/lib/mysql
  spring_app:
   image: mhamedazizghorbel/achat-1.0
-  container_name: mhamedazizghorbel/achat-1.0
+  container_name: tpachat1.0
   restart: on-failure
   ports:
    - 9090:8089
