@@ -33,7 +33,7 @@ public class fournisseur {
 	FournisseurRepository fournisseurRepository;
 	
 	//logging
-	Fournisseur fornisseur = new Fournisseur(long(1),"100", "10", null, null, null,null,null);
+	Fournisseur fornisseur = new Fournisseur(null,"100", "10", null, null, null,null,null);
 	
 	List<Fournisseur> list = new ArrayList<Fournisseur>() {
 		
