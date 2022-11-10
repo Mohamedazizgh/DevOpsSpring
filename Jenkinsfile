@@ -44,12 +44,17 @@ pipeline {
 
        sh "mvn clean verify  sonar:sonar \
   -Dsonar.projectKey=zeineb \
-  -Dsonar.host.url=http://192.168.0.6:9000 \
+  -Dsonar.host.url=http://192.168.1.47/:9000 \
   -Dsonar.login=0d355ec5aec6866f746b1ea314984766d20b100d \
   -Dsonar.java.binaries=src/main "
   
   
                }
+            stage('Nexus'){
+            steps{
+                sh """mvn deploy """
+            }
+        }
      }
         
         
