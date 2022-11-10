@@ -22,7 +22,7 @@ import tn.esprit.rh.achat.repositories.DetailFournisseurRepository;
 import tn.esprit.rh.achat.repositories.FournisseurRepository;
 import tn.esprit.rh.achat.repositories.ProduitRepository;
 import tn.esprit.rh.achat.repositories.SecteurActiviteRepository;
-
+import tn.esprit.rh.achat.services.FournisseurServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
 public class fournisseur {
