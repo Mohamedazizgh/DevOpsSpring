@@ -18,13 +18,16 @@ pipeline {
                 
             }
         }
-           stage('SonarQube analysis') {
-        steps{
-        withSonarQubeEnv('sonarqube-8.9.7') { 
-        sh "mvn clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar"
-    }
-        }
-        }
+             stage("SonarQube") {
+        steps {
+       sh "mvn clean install  sonar:sonar \
+  -Dsonar.projectKey=product \
+  -Dsonar.host.url=http://192.168.1.19:9000 \
+  -Dsonar.java.binaries=src/main "
+  
+  
+               }
+     }
              stage("nexus") {
         steps{
           sh 'mvn deploy  -DgroupId=tn.esprit.rh -DartifactId=achat -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.19:8081/repository/maven-releases/  -Dfile=target/achat-1.0.jar'
