@@ -20,9 +20,10 @@ pipeline {
         }
              stage("SonarQube") {
         steps {
-       sh "mvn clean install  sonar:sonar \
-  -Dsonar.projectKey=product \
+          sh "mvn clean install  sonar:sonar \
+  -Dsonar.projectKey=products \
   -Dsonar.host.url=http://192.168.1.19:9000 \
+  -Dsonar.login=54272e2305a92bae983babb61520761a62c3411a \
   -Dsonar.java.binaries=src/main "
   
   
