@@ -40,6 +40,14 @@ pipeline {
             }
         }
         
+        stage("Sonar") {
+        steps {
+
+       sh "mvn clean verify  sonar:sonar \
+  
+               }
+     }
+        
             stage('Nexus'){
             steps{
                 sh """mvn deploy """
