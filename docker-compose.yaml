@@ -9,8 +9,8 @@ mysqldb:
   volumes:
    - /home/ProjetDevops/volsql/data:/var/lib/mysql
  spring_app:
-  image: tp_achat
-  container_name: tp_achat
+  image: mhamedazizghorbel/achat-1.0
+  container_name: mhamedazizghorbel/achat-1.0
   restart: on-failure
   ports:
    - 9090:9090
