@@ -1,18 +1,20 @@
-mysqldb:
-  container_name: mysqldb
-  image: mysql:8
-  restart: unless-stopped
-  environment:
-   MYSQL_ROOT_PASSWORD: root
-  ports:
-   - 3306:3306
-  volumes:
-   - /home/ProjetDevops/data:/var/lib/mysql
- spring_app:
-  image: mhamedazizghorbel/achat-1.0
-  container_name: tpachat1.0
-  restart: on-failure
-  ports:
-   - 9090:8089
-  depends_on:
-   - mysqldb
+version: '2'
+services:
+  mysqldb:
+    container_name: mysqldb
+    image: mysql:8
+    restart: unless-stopped
+    environment:
+     MYSQL_ROOT_PASSWORD: root
+    ports:
+     - 3306:3306
+    volumes:
+     - /home/ProjetDevops/data:/var/lib/mysql
+   spring_app:
+    image: mhamedazizghorbel/achat-1.0
+    container_name: tpachat1.0
+    restart: on-failure
+    ports:
+     - 9090:8089
+    depends_on:
+     - mysqldb
