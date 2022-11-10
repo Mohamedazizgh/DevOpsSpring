@@ -43,7 +43,7 @@ pipeline {
 
        sh "mvn clean verify  sonar:sonar \
  -Dsonar.projectKey=product \
-  -Dsonar.host.url=http://192.168.1.11:9000 \
+  -Dsonar.host.url=http://192.168.1.132:9000 \
   -Dsonar.login=8f5d290f66fbc030fa053b742d2bc91259ea185b \
   -Dsonar.java.binaries=src/main "
   
@@ -52,7 +52,7 @@ pipeline {
      }
              stage("nexus") {
         steps{
-           sh 'mvn deploy:deploy-file -DgroupId=tn.esprit.rh -DartifactId=achat -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://http://192.168.1.11:8081/repository/maven-releases/  -Dfile=target/achat-1.0.jar'
+           sh 'mvn deploy:deploy-file -DgroupId=tn.esprit.rh -DartifactId=achat -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://http://192.168.1.132:8081/repository/maven-releases/  -Dfile=target/achat-1.0.jar'
         }
        
         }
