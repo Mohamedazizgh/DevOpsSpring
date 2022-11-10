@@ -56,5 +56,10 @@ pipeline {
         }
        
         }
+            stage("Build docker image") {
+        steps{
+           sh ' docker build -t oussemajerfel/achat-1.0:latest .'
+        }
+        } 
    }
 }
