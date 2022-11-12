@@ -39,6 +39,12 @@ pipeline {
                 
             }
         }
+           stage("Test Mock"){
+            steps {
+                sh """mvn test  """
+                
+            }
+        }
         
         
 
