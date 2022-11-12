@@ -78,8 +78,8 @@ public class ReglementServiceImplWithMockTest {
         f.setMontantFacture(90000F);
         var reglement1 = new Reglement((float) 1000.300, (float) 0, true, firstDate.getTime());
         reglement1.setFacture(f);
-        Mockito.when(reglementRepository.save(Mockito.any())).thenReturn(reglement1);
-        var res = reglementService.addReglement(reglement1);
+      //  Mockito.when(reglementRepository.save(Mockito.any())).thenReturn(reglement1);
+        // var res = reglementService.addReglement(reglement1);
         Assertions.assertEquals(5000F, res.getFacture().getMontantRemise(), 0.0001);
         // check if reglement is added
         listReglements.add(reglement1);
