@@ -71,13 +71,13 @@ public class ReglementTest {
 	Assertions.assertNotNull(reg);
 	}
 	
-	public void delete() {
+	/*public void delete() {
 	 	
 		Reglement r = reglementRepository.findById(1L).get();	
 		reglementRepository.delete(r);
 		reglementServiceImpl.deleteReglement(null);
 		
-	}
+	}*/
 	
 
 	
