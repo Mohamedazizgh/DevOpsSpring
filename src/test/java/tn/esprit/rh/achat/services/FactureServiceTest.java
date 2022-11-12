@@ -1,4 +1,4 @@
-package tn.esprit.rh.achat.services.facture;
+package tn.esprit.rh.achat.services;
 
 import org.junit.jupiter.api.Assertions;
 
