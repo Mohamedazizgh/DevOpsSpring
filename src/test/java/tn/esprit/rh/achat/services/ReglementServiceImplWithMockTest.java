@@ -1,5 +1,5 @@
 // write test for reglement service with mockito
-package tn.esprit.rh.achat.services;
+/*package tn.esprit.rh.achat.services;
 
 import tn.esprit.rh.achat.entities.Facture;
 import tn.esprit.rh.achat.entities.Reglement;
@@ -88,4 +88,4 @@ public class ReglementServiceImplWithMockTest {
         var res2 = reglementService.retrieveAllReglements();
         Assertions.assertEquals(1, res2.size());
     }
-}
+}*/
