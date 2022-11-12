@@ -12,7 +12,7 @@ services:
 
 
   app_achat_back:
-    image : ghaithbhs/devops
+    image : snoussi22/devops
     depends_on:
       - mysqldatabase
     restart: on-failure
