@@ -41,7 +41,7 @@ pipeline {
         }
         
         
-
+/*
          
         stage('SonarQube analysis') {
       steps {
@@ -97,7 +97,7 @@ pipeline {
                 echo "Hello world"
                     }
             }
-        
+        */
   
 
     }
