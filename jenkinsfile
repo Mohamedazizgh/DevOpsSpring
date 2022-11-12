@@ -52,7 +52,7 @@ pipeline {
        
           sh "mvn clean  sonar:sonar \
            -Dsonar.projectKey=devops \
-           -Dsonar.host.url=http://192.168.1.19:9000 \
+           -Dsonar.host.url=http://192.168.112.105:9000 \
            -Dsonar.login=7cffe717aaf2bf3b76ce4c910b639ff7c80f731e \
            -Dsonar.java.binaries=src/main "
         
@@ -64,7 +64,7 @@ pipeline {
            stage("nexus") {
         steps{
          
-           sh 'mvn  deploy  -DgroupId=tn.esprit.rh -DartifactId=achat -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.19:8081/repository/maven-releases/  -Dfile=target/achat-1.0.jar'
+           sh 'mvn  deploy  -DgroupId=tn.esprit.rh -DartifactId=achat -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.112.105:8081/repository/maven-releases/  -Dfile=target/achat-1.0.jar'
         }
         }
          stage("Build docker image") {
