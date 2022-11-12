@@ -48,7 +48,7 @@ public class fournisseur {
 	void test_retrieveAllFournisseur_ok() {
 
 		when(fournisseurRepository.findAll()).thenReturn(new ArrayList());
-		List<Fournisseur> response= fournisseurServiceImpl.retrieveAllReglements();
+		List<Fournisseur> response= fournisseurServiceImpl.retrieveAllFournisseurs();
 		assertEquals(0, response.size());
 	}
 
