@@ -12,7 +12,7 @@ services:
 
 
   app_achat_back:
-    image : mohamedazizgh/devopsspring
+    image : snoussi22/achat-1.0
     depends_on:
       - mysqldatabase
     restart: on-failure
