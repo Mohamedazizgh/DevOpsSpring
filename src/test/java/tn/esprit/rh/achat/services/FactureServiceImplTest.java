@@ -15,15 +15,15 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.esprit.examen.entities.CategorieProduit;
-import com.esprit.examen.entities.DetailFacture;
-import com.esprit.examen.entities.Facture;
-import com.esprit.examen.entities.Produit;
-import com.esprit.examen.entities.Stock;
-import com.esprit.examen.repositories.CategorieProduitRepository;
-import com.esprit.examen.repositories.DetailFactureRepository;
-import com.esprit.examen.repositories.FactureRepository;
-import com.esprit.examen.repositories.ProduitRepository;
+import tn.esprit.rh.achat.entities.CategorieProduit;
+import tn.esprit.rh.achat.entities.DetailFacture;
+import tn.esprit.rh.achat.entities.Facture;
+import tn.esprit.rh.achat.entities.Produit;
+import tn.esprit.rh.achat.entities.Stock;
+import tn.esprit.rh.achat.repositories.CategorieProduitRepository;
+import tn.esprit.rh.achat.repositories.DetailFactureRepository;
+import tn.esprit.rh.achat.repositories.FactureRepository;
+import tn.esprit.rh.achat.repositories.ProduitRepository;
 
 
 import lombok.extern.slf4j.Slf4j;
