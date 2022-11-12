@@ -1,97 +1,89 @@
-/*package tn.esprit.rh.achat.services;
+package tn.esprit.rh.achat.services;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Optional;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import tn.esprit.rh.achat.entities.CategorieProduit;
-import tn.esprit.rh.achat.entities.DetailFacture;
 import tn.esprit.rh.achat.entities.Facture;
-import tn.esprit.rh.achat.entities.Produit;
-import tn.esprit.rh.achat.entities.Stock;
-import tn.esprit.rh.achat.repositories.CategorieProduitRepository;
-import tn.esprit.rh.achat.repositories.DetailFactureRepository;
 import tn.esprit.rh.achat.repositories.FactureRepository;
-import tn.esprit.rh.achat.repositories.ProduitRepository;
+import tn.esprit.rh.achat.services.FactureServiceImpl;
 
 
-import lombok.extern.slf4j.Slf4j;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
-@RunWith(SpringRunner.class)
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 @SpringBootTest
-@Slf4j
-public class FactureServiceImplTest {
-    
+@ExtendWith(MockitoExtension.class)
+public class FactureServiceTest {
+
     @Mock
     FactureRepository factureRepository;
-    @Mock
-    DetailFactureRepository detailFactureRepository;
-    
-    @Mock
-    ProduitRepository produitRepository;
-    
-    @Mock
-    CategorieProduitRepository categorieProduitRepository;
-    
-    @InjectMocks
-    FactureServiceImpl factureServiceImpl;
-    
-    @InjectMocks
-    ProduitServiceImpl produitServiceImpl;
-    
-    @InjectMocks
-    CategorieProduitServiceImpl categorieProduitServiceImpl;
-    
 
-    
+    @InjectMocks
+    FactureServiceImpl factureService;
+
     @Test
-    public void sommeFactureTest() {
-        log.info("test : sommeFactureTest" );
+    public void testRetrieveFacture() {
 
-        Float sum = 0F;
+        Facture facture = new Facture(1L, 100, 500, null, null, null, null, null, null);
 
-        CategorieProduit cProduit = CategorieProduit.builder().codeCategorie("code1")
-                .libelleCategorie("libelle categ").idCategorieProduit(1L).build();
-        Mockito.when(categorieProduitRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(cProduit));
-        Stock stock = Stock.builder().libelleStock("lib stock").qte(10).qteMin(50).idStock(1L).build();
-        
-        Produit p1 = Produit.builder().codeProduit("code1").libelleProduit("lib1").prix(50.9F).categorieProduit(cProduit).stock(stock)
-                .idProduit(1L).build();
-        Mockito.when(produitRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(p1));
-        p1.setCategorieProduit(cProduit);
-        DetailFacture detailFacture = DetailFacture.builder().montantRemise(0F).pourcentageRemise(0).qteCommandee(9).produit(p1).build();
-        Facture facture = Facture.builder().dateCreationFacture(new Date()).build();
-        HashSet<DetailFacture> detailsList = new HashSet<DetailFacture>();
-        detailsList.add(detailFacture);
-        
-        facture = factureServiceImpl.addDetailsFacture(facture, detailsList);
+        facture.setIdFacture(1L);
 
-       
-        Mockito.when(factureRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(facture));
-        
-        for (DetailFacture detailFacture2 : detailsList) {
-            sum += detailFacture2.getProduit().getPrix()* detailFacture2.getQteCommandee();
-        }
+        Mockito.when(factureRepository.findById(1L)).thenReturn(Optional.of(facture));
+        factureService.retrieveFacture(1L);
+        Assertions.assertNotNull(facture);
 
-        log.info("expected sum="+ sum );
-        log.info("actual sum="+ facture.getMontantFacture() );
-        log.info("test : finished sommeFactureTest" );
+        System.out.println(facture);
+        System.out.println(" Retrieve is working correctly...!!");
 
-
-        assertEquals(sum, facture.getMontantFacture());
     }
 
-}*/
+
+    @Test
+    public void createFacturekTest()
+    {
+        Facture facture2 = new Facture(2L, 100, 500, null, null, null, null, null, null);
+        facture2.setIdFacture(2L);
+
+        factureService.addFacture(facture2);
+        verify(factureRepository, times(1)).save(facture2);
+        System.out.println(facture2);
+        System.out.println(" Create is working correctly...!!");
+    }
+
+
+    @Test
+    public void getAllFactureTest()
+    {
+        List<Facture> Facturelist = new ArrayList<Facture>() {
+
+            {
+                add(new Facture(3L, 100, 700, null, null, null, null, null, null));
+                add(new Facture(4L, 200, 800, null, null, null, null, null, null));
+                add(new Facture(5L, 300, 900, null, null, null, null, null, null));
+            }};
+
+
+        when(factureService.retrieveAllFactures()).thenReturn(Facturelist);
+        //test
+        List<Facture> factureList = factureService.retrieveAllFactures();
+        assertEquals(3, factureList.size());
+        System.out.println(" Retrieve all is working correctly...!!");
+    }
+
+
+
+
+}
