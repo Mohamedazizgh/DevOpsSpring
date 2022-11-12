@@ -86,8 +86,8 @@ pipeline {
          
      stage('DOCKER COMPOSE') {
                  steps {
-		      
-                     // sh 'docker-compose up -d --build'
+		      sh """mvn clean -e """
+                     //sh 'docker-compose up -d --build'
                    }
               }
 	      
