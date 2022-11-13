@@ -26,7 +26,7 @@ environment {
                 
             }
         }
-	   stage('Test') {
+	   stage('Test Mokito') {
            steps {
                sh 'mvn test'
             }
@@ -61,7 +61,7 @@ environment {
 	       sh 'docker login -u amenisbei -p ameni@123 '
         }
         }
-            stage("Push l'image dans dockerhub") {
+            stage("Push dockerhub image") {
         steps{
 	
 	       sh 'docker push amenisbei/achat-1.0:latest'
