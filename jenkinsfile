@@ -14,7 +14,14 @@ environment {
                 
             }
 }
-        /* stage("MVN Clean"){
+        /* 
+	 stage("MVN Install"){
+            steps {
+                sh """mvn install """
+                
+            }
+        }
+	stage("MVN Clean"){
             steps {
                 sh """mvn clean -e """
                 
