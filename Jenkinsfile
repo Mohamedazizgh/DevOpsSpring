@@ -61,12 +61,12 @@ pipeline {
         }
        
         }
-         /* stage("Build docker image") {
+          stage("Build docker image") {
         steps{
            sh ' docker build -t salmazd/achat-1.0:latest .'
         }
         }
-         */
+        
            
            
         
