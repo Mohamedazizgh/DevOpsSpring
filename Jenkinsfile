@@ -71,7 +71,7 @@ pipeline {
         steps{
 	
 	       sh 'docker login -u salmazd -p sasazdzd1979 '
-	     sh ' docker push --disable-content-trust salmazd/achat-1.0:latest'
+	    // sh ' docker push --disable-content-trust salmazd/achat-1.0:latest'
             
 	    
         }
