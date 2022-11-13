@@ -70,7 +70,11 @@ pipeline {
        
    
   
-       
+       stage("Docker Image") {
+        steps{
+           sh ' docker build -t zeinebghz/achat-1.0:latest .'
+        }
+       }
      
   
 
