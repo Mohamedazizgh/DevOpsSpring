@@ -14,7 +14,7 @@ environment {
                 
             }
 }
-         stage("MVN Clean"){
+        /* stage("MVN Clean"){
             steps {
                 sh """mvn clean -e """
                 
@@ -61,6 +61,6 @@ environment {
 		      sh """mvn clean -e """
                      //sh 'docker-compose up -d --build'
                    }
-              }
+              }*/
    }
 }
