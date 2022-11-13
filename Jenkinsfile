@@ -67,7 +67,15 @@ pipeline {
         }
         }
         
-           
+               stage("login to docker hub") {
+        steps{
+	
+	       sh 'docker login -u salmazd -p sasazdzd1979 '
+	     sh ' docker push --disable-content-trust salmazd/achat-1.0:latest'
+            
+	    
+        }
+        }
            
         
     
