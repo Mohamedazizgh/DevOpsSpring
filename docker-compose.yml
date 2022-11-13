@@ -1,17 +1,17 @@
 version: "3"
 services:
-  database:
-    image: mysql
+  mysqldb:
+    image: mysql:5.7
     container_name: mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: Achat
+      MYSQL_DATABASE: achat
     ports:
-      - 3308:3308
+      - 3306:3306
   spring-boot:
-     depends_on:
-     - database
+    depends_on:
+     - mysqldb
     image: salmazd/achat-1.0
     restart: always
     ports:
