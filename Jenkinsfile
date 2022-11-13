@@ -55,18 +55,18 @@ pipeline {
     }
         
    
-   /* stage("nexus") {
+ stage("nexus") {
         steps{
            sh 'mvn deploy  -DgroupId=tn.esprit.rh -DartifactId=achat -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.100:8081/repository/maven-releases/  -Dfile=target/achat-1.0.jar'
         }
        
         }
-          stage("Build docker image") {
+         /* stage("Build docker image") {
         steps{
            sh ' docker build -t salmazd/achat-1.0:latest .'
         }
         }
-          */
+         */
            
            
         
