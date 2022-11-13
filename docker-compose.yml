@@ -10,7 +10,8 @@ services:
     ports:
       - 3308:3308
   spring-boot:
-    
+     depends_on:
+     - database
     image: oussemajerfel/achat-1.0
     restart: always
     ports:
