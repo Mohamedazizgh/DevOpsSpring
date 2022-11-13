@@ -51,7 +51,7 @@ public class FactureServiceTest {
     }
 
 
-    @Test
+  /*  @Test
     public void createFacturekTest()
     {
         Facture facture2 = new Facture(2L, 100, 500, null, null, null, null, null, null);
@@ -61,7 +61,7 @@ public class FactureServiceTest {
         verify(factureRepository, times(1)).save(facture2);
         System.out.println(facture2);
         System.out.println(" Create is working correctly...!!");
-    }
+    }*/
 
 
     @Test
