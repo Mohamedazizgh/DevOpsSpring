@@ -1,7 +1,9 @@
    
 pipeline {
    agent any
-
+environment {
+       DOCKERHUB = credentials('dockerhub')
+    }
     stages {
         
                 stage('git') {
@@ -39,6 +41,26 @@ pipeline {
         steps{
            sh ' docker build -t amenisbei/achat-1.0:latest .'
         }
-        } 
+        }
+      
+           stage("login dockerhub") {
+        steps{
+	/*echo $DOCKERHUB_PSW | docker login -u $DOCKERHUB_USR --password-stdin*/
+	       sh 'docker login -u amenisbei -p ameni@123 '
+        }
+        }
+            stage("Push l'image dans dockerhub") {
+        steps{
+	
+	       sh 'docker push amenisbei/achat-1.0:latest'
+        }
+        }
+         
+     stage('Build docker compose') {
+                 steps {
+		      sh """mvn clean -e """
+                     //sh 'docker-compose up -d --build'
+                   }
+              }
    }
 }
