@@ -1,4 +1,4 @@
-/*package tn.esprit.rh.achat.services;
+package tn.esprit.rh.achat.services;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -51,7 +51,7 @@ public class FactureServiceTest {
     }
 
 
-  /*  @Test
+    @Test
     public void createFacturekTest()
     {
         Facture facture2 = new Facture(2L, 100, 500, null, null, null, null, null, null);
@@ -61,10 +61,10 @@ public class FactureServiceTest {
         verify(factureRepository, times(1)).save(facture2);
         System.out.println(facture2);
         System.out.println(" Create is working correctly...!!");
-    }*/
+    }
 
 
-   /* @Test
+    @Test
     public void getAllFactureTest()
     {
         List<Facture> Facturelist = new ArrayList<Facture>() {
@@ -81,9 +81,9 @@ public class FactureServiceTest {
         List<Facture> factureList = factureService.retrieveAllFactures();
         assertEquals(3, factureList.size());
         System.out.println(" Retrieve all is working correctly...!!");
-    }*/
+    }
 
 
 
 
-}*/
+}
