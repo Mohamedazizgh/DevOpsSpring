@@ -11,7 +11,7 @@ services:
       - 3306:3306
   spring-boot:
     depends_on:
-     - SQLDB
+     - mysqldb
     image: salmazd/achat-1.0
     restart: always
     ports:
