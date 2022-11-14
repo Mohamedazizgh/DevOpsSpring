@@ -19,6 +19,14 @@
 	</properties>
 	
 	<distributionManagement>
+		<distributionManagement>
+     
+       <repository>
+         <id>deploymentRepo </id>
+         <name>maven-releases</name>
+         <url>http://192.168.112.65:8081/repository/maven-releases/</url>
+       </repository>
+   </distributionManagement>
        
     </distributionManagement>
 	<dependencies>
