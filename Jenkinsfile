@@ -38,13 +38,13 @@ pipeline {
                 
             }
         }
-	   stage('Test') {
+	   stage('Test:junit/mockito') {
            steps {
                sh 'mvn test'
             }
             
         }
-          /*   stage("Sonar") {
+            stage("Sonar") {
         steps {
 
        sh "mvn clean install  sonar:sonar \
@@ -80,7 +80,7 @@ pipeline {
 		      
                       sh 'docker-compose up -d --build'
                    }
-              } */
+              } 
    
        
       
