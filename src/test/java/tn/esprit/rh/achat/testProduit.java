@@ -18,10 +18,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@RunWith(SpringRunner.class)
 @ExtendWith(MockitoExtension.class)
-@SpringBootTest
-@Slf4j
 public class testProduit {
 
 	
