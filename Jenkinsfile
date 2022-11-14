@@ -48,7 +48,6 @@ pipeline {
         steps {
 
          sh"  mvn sonar:sonar \
-    mvn sonar:sonar \
   -Dsonar.projectKey=AchatS \
   -Dsonar.host.url=http://192.168.112.65:9000 \
   -Dsonar.login=ee35478154290773167e9941f54d7700ea78486d\
