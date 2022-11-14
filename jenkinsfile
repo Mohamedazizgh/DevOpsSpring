@@ -87,6 +87,12 @@ pipeline {
 	    
         }
         }
+	
+	stage("Push to DockerHub") {
+                steps{
+                    sh 'docker push -t snoussi22/achat-1.0:latest'
+                }
+        }
               
           stage('mailling'){
            steps {
