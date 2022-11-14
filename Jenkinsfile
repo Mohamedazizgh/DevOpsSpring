@@ -47,10 +47,10 @@ pipeline {
             stage("Sonar") {
         steps {
 
-       sh "mvn clean install  sonar:sonar \
-  -Dsonar.projectKey=Achat \
+           mvn sonar:sonar \
+  -Dsonar.projectKey=AchatS \
   -Dsonar.host.url=http://192.168.112.65:9000 \
-  -Dsonar.login=ab8fe572293d73d97439de2a1bc96e0bb27c53a5 \
+  -Dsonar.login=ee35478154290773167e9941f54d7700ea78486d
   -Dsonar.java.binaries=src/main "
   
   
