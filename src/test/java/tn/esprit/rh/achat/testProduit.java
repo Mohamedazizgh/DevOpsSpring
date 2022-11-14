@@ -37,78 +37,46 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ProductServiceImplMockTest {
 
-	@Mock
-	ProduitRepository produitRepo;
-
-	@Mock
-	StockRepository stRepo;
 	
-	@InjectMocks
-	ProduitServiceImpl produitService;
-	
+	  @InjectMocks
+	    ProduitServiceImpl  produitService ;
 
-    @BeforeEach
-    void
-    setUp() {
-        produitRepo.deleteAll();
-    }
+	    @Mock
+	    ProduitRepository produitRepository ;
 
-    @AfterEach
-    void
-    setDown() {
-        produitRepo.deleteAll();
-    }
-	
-	@Test
-	@Order(0)
-	public void verifierPrixProduit() {
-        log.info("MOCK : verifierMaxPrix : verif if price > 0" );
-		Produit p1 = Produit.builder().libelleProduit("lib").codeProduit("codeprod").prix(10).build();
-	    Assertions.assertTrue(p1.getPrix()>0);
-	}
-	
-	@Test
-	@Order(1)
-	public void addStockIfMinimumQuantity() {
-        log.info("MOCK : addStockIfMinimumQuantity : add stock if minimum quantity" );
-        //creating product/stock
-		Produit p1 = Produit.builder().libelleProduit("lib").codeProduit("codeprod").prix(10).build();
-		Stock s1 = Stock.builder().libelleStock("libstock").qte(0).qteMin(1).build();
-		Assertions.assertNotNull(s1);
-		Assertions.assertNotNull(p1);
-		//affect stock to prod
-		p1.setStock(s1);
-		//affect product to stock
-	    s1.setQte(s1.getQte()+1);
-	    //added stock
-        Mockito.when(stRepo.save(Mockito.any())).thenReturn(s1);
-        var stockadded = stRepo.save(s1);
-        
-        log.info("Actual quantity : " +stockadded.getQte());
-        log.info("Expected minimum quantity : " +stockadded.getQteMin()); 
-		Assertions.assertTrue(stockadded.getQte()>=stockadded.getQteMin());
-		
-	}
+	    @Test
+	    public void testGetallProducts(){
+	        when(produitRepository. findAll()).thenReturn(Stream
+	                .of(new Produit(), new Produit()).collect(Collectors.toList()));
+	        assertEquals(2, produitService.retrieveAllProduits().size());
+	    }
 
-	@Test
-	@Order(2)
-	public void affectStockToProduit() {
-        log.info("MOCK : affectStockToProduit : assign right stock to prod" );
-        //creating product/stock
-		Produit p1 = Produit.builder().libelleProduit("lib").codeProduit("codeprod").prix(10).build();
-		Stock s1 = Stock.builder().libelleStock("libstock").qte(0).qteMin(1).build();
-		//Making sure not null
-		Assertions.assertNotNull(s1);
-		Assertions.assertNotNull(p1);
-		//Affect stock to prod
-		p1.setStock(s1);
-		Mockito.when(produitRepo.save(Mockito.any())).thenReturn(p1);
-	    var productadded = produitRepo.save(p1);
-	        
-        //Checking
-        log.info("Expected stock : " + s1.getLibelleStock());
-        log.info("Affected stock  " + productadded.getStock().getLibelleStock());			
-     	Assertions.assertEquals (productadded.getStock(), s1);
+	    @Test
+	    public void addProduitTest(){
+	        Produit prod = new Produit();
+	        when(produitRepository.save(prod)).thenReturn(prod);
+	        assertEquals(prod, produitService.addProduit(prod));
+	    }
 
+	    @Test
+	    public void deleteUserTest(){
+	        Produit prod = new Produit();
+	        produitService.deleteProduit(prod.getIdProduit());
+	        verify(produitRepository, times(1)).deleteById(prod.getIdProduit());
+	    }
+
+	    @Test
+	    public void testUpdateProduct(){
+	        Produit prod = new Produit();
+	        when(produitRepository.save(prod)).thenReturn(prod);
+	        assertEquals(prod, produitService.updateProduit(prod));
+	    }
+
+	    @Test
+	    public void testGetProduct(){
+	        Produit prod = new Produit();
+	        when(produitRepository.findById(prod.getIdProduit())).thenReturn(Optional.of(prod));
+	        assertEquals(prod, produitService.retrieveProduit(prod.getIdProduit()));
+	    }
 
 	}
