@@ -27,6 +27,7 @@ import tn.esprit.rh.achat.entities.Produit;
 import tn.esprit.rh.achat.entities.Stock;
 import tn.esprit.rh.achat.repositories.ProduitRepository;
 import tn.esprit.rh.achat.repositories.StockRepository;
+import tn.esprit.rh.achat.services.ProduitServiceImpl;
 
 import lombok.var;
 import lombok.extern.slf4j.Slf4j;
