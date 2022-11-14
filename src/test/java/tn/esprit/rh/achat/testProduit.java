@@ -35,7 +35,7 @@ import lombok.extern.slf4j.Slf4j;
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
 @Slf4j
-public class ProductServiceImplMockTest {
+public class testProduit {
 
 	
 	  @InjectMocks
