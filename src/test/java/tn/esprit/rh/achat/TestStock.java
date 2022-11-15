@@ -30,7 +30,7 @@ public class TestStock {
 	StockRepository stockRepository;
 	
 	//logging
-	Stock stock = new Stock(null,100, 10, null, null, null);
+	Stock stock = new Stock(null,"100", 10, 2, null);
 	
 	List<Stock> list = new ArrayList<Stock>() {
 		
