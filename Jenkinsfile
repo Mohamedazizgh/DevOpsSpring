@@ -39,6 +39,14 @@ pipeline {
                 
             }
         }
+	    
+	    
+	        stage("Test unitaire"){
+            steps {
+                sh """mvn test  """
+                
+            }
+        }
         
         
 
