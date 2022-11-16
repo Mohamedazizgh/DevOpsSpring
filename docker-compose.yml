@@ -27,3 +27,11 @@ services:
             "spring.jpa.hibernate.ddl-auto" : "update",
             "spring.jpa.properties.hibernate.dialect": "org.hibernate.dialect.MySQL5InnoDBDialect"
           }'
+  app_achat_front :
+    image : snoussi22/achat_front
+    ports:
+      - 80:80
+    depends_on :
+      - app_achat_back
+    restart : on-failure
+
