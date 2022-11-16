@@ -4,12 +4,11 @@ pipeline {
     stages {
         
                 stage('git') {
-            steps {
-            
-                git branch: 'marwen', url: 'https://github.com/Mohamedazizgh/DevOpsSpring.git',
-                
-            }
-}
+		    steps {
+
+			git branch: 'marwen', url: 'https://github.com/Mohamedazizgh/DevOpsSpring.git'
+			   }
+		   }
         stage ('Cleaning the project'){
 		steps {
 			sh 'mvn clean'
