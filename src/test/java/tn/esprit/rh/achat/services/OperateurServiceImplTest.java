@@ -1,4 +1,4 @@
-package com.esprit.examen.services;
+package tn.esprit.rh.achat.services;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.verify;
@@ -16,14 +16,14 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.esprit.examen.entities.Operateur;
-import com.esprit.examen.repositories.OperateurRepository;
+import tn.esprit.rh.achat.entities.Operateur;
+import tn.esprit.rh.achat.repositories.OperateurRepository;
 
 
 
 @ExtendWith(MockitoExtension.class)
 
-public class OperateurServiceTestMock {
+public class OperateurServiceImplTest {
 	@Mock
 	OperateurRepository operateurRepository;
 
