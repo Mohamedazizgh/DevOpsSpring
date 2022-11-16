@@ -24,7 +24,13 @@ pipeline {
                sh 'mvn package'
             }
         }
-        
+           stage('Run app With DockerCompose') {
+              steps {
+                sh '''
+                 docker pull zoubaghz/devops
+		'''
+              }
+              }    
 
         
         stage("Sonar") {
