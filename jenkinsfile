@@ -17,7 +17,7 @@ pipeline {
        stage('MVN Package'){
             steps {
                sh """
-	       sudo docker start mysql
+	        docker start mysql
 	       mvn package  
 	       """
             }
