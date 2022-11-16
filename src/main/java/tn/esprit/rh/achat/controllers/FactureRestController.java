@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @Api(tags = "Gestion des factures")
 @RequestMapping("/facture")
-@CrossOrigin("*")
+@CrossOrigin("http://192.168.1.13:8089/SpringMVC/")
 public class FactureRestController {
 
     @Autowired
