@@ -1,4 +1,5 @@
-FROM maven:3.8.2-jdk-11
-ADD target/achat-1.0.jar achat-1.0.jar
-EXPOSE 80
-ENTRYPOINT ["java", "-jar", "achat-1.0.jar"]
+FROM eclipse-temurin:11-jdk-alpine
+ARG IP
+ADD http://$IP:8081/repository/maven-releases/tn/esprit/rh/achat/1.0/achat-1.0.jar achat-1.0.jar
+EXPOSE 8089
+ENTRYPOINT ["java","-jar","/achat-1.0.jar"]
