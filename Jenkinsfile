@@ -64,6 +64,7 @@ pipeline {
               steps {
                 sh '''
                  docker pull zoubaghz/devops
+		 docker-compose up -d
 		'''
               }
               } 
