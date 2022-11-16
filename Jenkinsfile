@@ -12,38 +12,25 @@ pipeline {
                 
             }
 }
-        
-       stage('MVN Package'){
-            steps {
-                sh """mvn -version  """
-                sh """java -version """
-               sh """mvn package -e """
-            }
-        }
-        
-      stage("MVN Compile"){
-            steps {
-                sh """mvn compile -e """
-                
-            }
-        }
-           stage("MVN Install"){
-            steps {
-                sh """mvn install """
-                
-            }
-        }
         stage("MVN Clean"){
             steps {
-                sh """mvn clean -e """
+                sh """mvn clean """
                 
             }
+        }        
+       stage('MVN Package'){
+            steps {
+
+               sh 'mvn package'
+            }
         }
+        
+
         
         stage("Sonar") {
         steps {
 
-            sh "mvn clean verify  sonar:sonar"
+            sh "mvn  sonar:sonar"
 
   
                }
@@ -55,9 +42,26 @@ pipeline {
             }
         
      }
-        
-        
-       stage('sending mail'){
+         
+       
+   
+  
+         stage('build')
+        {
+            steps {
+                 sh 'docker build --build-arg IP=192.168.1.47 -t zoubaghz/devops  .'
+            }
+        }
+
+      stage('Push') {
+
+			steps {
+				sh 'echo $dockerhub_PSW | docker login -u zoubaghz -p dckr_pat_R4PjLWflSBPghSQiVoBur0UFeaY'
+				sh 'docker push zoubaghz/devops'
+			}
+		}
+     
+         stage('sending mail'){
            steps {
             mail bcc: '', body: '''Hello from Jenkins,
             Devops Pipeline returned success.
@@ -66,17 +70,6 @@ pipeline {
             }
        } 
 
-         
-       
-   
-  
-       stage("Docker Image") {
-        steps{
-           sh ' docker build -t zoubaghz/achat-1.0:latest .'
-        }
-       }
-     
-  
 
     }
       
