@@ -1,13 +1,12 @@
-//test
-package tn.esprit.rh.achat.services;
+package com.esprit.examen.services;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -17,60 +16,64 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import tn.esprit.rh.achat.entities.Operateur;
-import tn.esprit.rh.achat.entities.SecteurActivite;
-import tn.esprit.rh.achat.repositories.OperateurRepository;
-import tn.esprit.rh.achat.repositories.SecteurActiviteRepository;
+import com.esprit.examen.entities.Operateur;
+import com.esprit.examen.repositories.OperateurRepository;
+
 
 
 @ExtendWith(MockitoExtension.class)
-class OperateurServiceImpTest {
 
+public class OperateurServiceTestMock {
 	@Mock
 	OperateurRepository operateurRepository;
+
 	@InjectMocks
-	OperateurServiceImpl impl;
-	
-	//initializer des objet
-	Operateur operateur= new Operateur("eee","eee","eee");
+	OperateurServiceImpl operateurService;
 
-	List<Operateur> r = new ArrayList<Operateur>() {
+	@Test
+	public void retrieveAllOperateursTest() {
+		when(operateurRepository.findAll()).thenReturn(Stream.of(
+                new Operateur((long)1,"Rain","Do","Niar", null),
+                new Operateur((long)2,"Rain","Sometimes","Niar", null), 
+				new Operateur((long)3,"Rain","Codes","Niar", null))
+                .collect(Collectors.toList()));
+		assertEquals(3,operateurService.retrieveAllOperateurs().size());
 		
-		{
-			add(new Operateur("eee","eee","eee"));
-			add(new Operateur("eee","eee","eee"));
-			add(new Operateur("eee","eee","eee"));
-		}
-	};
-	
-	
-	@Test
-	void retrieveOperateur() {
-		Mockito.when(operateurRepository.findAll()).thenReturn(r);
-		List<Operateur> ops = impl.retrieveAllOperateurs();
-		Assertions.assertNotNull(ops);
 	}
 
 	@Test
-	void addOperateur() {
-		Mockito.when(operateurRepository.save(operateur)).thenReturn(operateur);
-		Operateur op = impl.addOperateur(operateur);
-		Assertions.assertNotNull(op);
+	public void addOperateurTest() {
+		Operateur op = new Operateur((long) 1, "NiAr", "ForFun", "MoreComplexPassword", null);
+		when(operateurRepository.save(op)).thenReturn(op);
+		assertEquals(op, operateurService.addOperateur(op));
 	}
 
 	@Test
-	void retrieveAllOperators() {
-		Mockito.when(operateurRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(operateur));
-		Operateur op=impl.retrieveOperateur((long)2);
-		Assertions.assertNotNull(op);
+	public void retreiveOperateurTest() {
+		Operateur op = new Operateur((long) 2, "NiAr", "ForFun", "MoreComplexPassword", null);
+		when(operateurRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(op));
+		Operateur op1 = operateurService.retrieveOperateur((long) 2);
+		Assertions.assertNotNull(op1);
+
 	}
 
-	
+	@Test
+	public void deleteOperateurTest() {
+		Operateur op = new Operateur((long) 1, "NiAr", "ForFun", "MoreComplexPassword", null);
+		operateurService.deleteOperateur((long) 1);
+		verify(operateurRepository).deleteById((long) 1);
 
-	/*@Test
-	void getChiffreAffaireEntreDeuxDate() {
-		Mockito.doReturn(r).when(reglementRepository).findAll();
-		float reg = reglementServiceImpl.getChiffreAffaireEntreDeuxDate(new Date(),new Date());
-		Assertions.assertNotNull(reg);
-	}*/
+	}
+
+	@Test
+	public void updatetOperateurTest() {
+		Operateur op = new Operateur((long)1,"NiAr","ForFun","MoreComplexPassword", null) ;
+		Mockito.when(operateurRepository.save(Mockito.any(Operateur.class))).thenReturn(op);
+		op.setPrenom("mohamed");;
+		Operateur exisitingOp= operateurService.updateOperateur(op) ;
+		
+		assertNotNull(exisitingOp);
+		assertEquals("mohamed", op.getPrenom());
+	}
+
 }
