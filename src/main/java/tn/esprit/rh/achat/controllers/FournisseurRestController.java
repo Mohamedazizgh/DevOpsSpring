@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @Api(tags = "Gestion des fournisseurss")
 @RequestMapping("/fournisseur")
+@CrossOrigin("http://192.168.1.13:8089/SpringMVC/")
 public class FournisseurRestController {
 
 	@Autowired
