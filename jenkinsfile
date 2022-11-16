@@ -7,61 +7,39 @@ pipeline {
             steps {
             
                 git branch: 'marwen', url: 'https://github.com/Mohamedazizgh/DevOpsSpring.git',
-                credentialsId:"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";
                 
             }
 }
-        
+        stage ('Cleaning the project'){
+		steps {
+			sh 'mvn clean'
+		}
+	}
        stage('MVN Package'){
             steps {
-                sh """mvn -version  """
-                sh """java -version """
-               sh """mvn package -e """
+               sh """
+	       sudo docker start mysql
+	       mvn package  
+	       """
             }
         }
         
-      stage("MVN Compile"){
-            steps {
-                sh """mvn compile -e """
-                
-            }
-        }
-           stage("MVN Install"){
-            steps {
-                sh """mvn install """
-                
-            }
-        }
-        stage("MVN Clean"){
-            steps {
-                sh """mvn clean -e """
-                
-            }
-        }
         
-        stage('database connection') {
-            steps{
-                sh '''
-                sudo docker stop mysql || true
-                sudo docker restart mysql || true
-                '''
-            }
-        }
+        
         
         stage ('Mockito/Junit') {
              steps {
-            sh 'mvn test -Dtest="SecteurActiviteTest" '
+            sh '''
+	    mvn test -Dtest="SecteurActiviteTest" 
+	    docker stop mysql
+	    '''
             }
         }
         
           stage("Sonar") {
         steps {
 
-       sh "mvn clean verify  sonar:sonar \
-   -Dsonar.projectKey=Secteur \
-  -Dsonar.host.url=http://localhost:9000 \
-  -Dsonar.login=2ec5bab357514c59a417ca53b1790d78dfc501b1\
-  -Dsonar.java.binaries=src/main "
+       sh "mvn sonar:sonar"
   
   
                }
@@ -78,14 +56,7 @@ pipeline {
            sh ' docker build -t snoussi22/achat-1.0:latest .'
         }
         } 
-        
-        stage('DockerCompose') {
-              steps {
-                  sh "docker-compose -f docker-compose.yml up -d  "
-              }
-              }
-              
-             stage("login to docker hub") {
+	stage("login to docker hub") {
         steps{
 	
 	       sh 'docker login -u snoussi22 -p 50585480Ss '
@@ -99,6 +70,14 @@ pipeline {
                     sh 'docker push  snoussi22/achat-1.0:latest'
                 }
         }
+        
+        stage('DockerCompose') {
+              steps {
+                  sh "docker-compose  up -d  "
+              }
+              }
+              
+             
               
           stage('mailling'){
            steps {
