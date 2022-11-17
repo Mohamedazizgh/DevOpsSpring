@@ -8,7 +8,7 @@ pipeline {
             steps {
             
                 git branch: 'zeineb', url: 'https://github.com/Mohamedazizgh/DevOpsSpring.git',
-                credentialsId:"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";
+           
                 
             }
 }
