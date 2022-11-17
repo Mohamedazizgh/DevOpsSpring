@@ -59,36 +59,36 @@ pipeline {
        stage("Publish to nexus"){ 
              steps{ 
                  script{ 
-                     pom= readMavenPom file: "pom.xml"; 
-                     filesByGlob= findFiles(glob: "target/*.${pom.packaging}"); 
-                     artifactPath= filesByGlob[0].path; 
-                     artifactExists= fileExists artifactPath; 
+                     pom=readMavenPom file:"pom.xml"; 
+                     filesByGlob=findFiles(glob:"target/*.${pom.packaging}"); 
+                     artifactPath=filesByGlob[0].path; 
+                     artifactExists=fileExists artifactPath; 
                       
                      if(artifactExists){ 
                           
                          nexusArtifactUploader( 
-                             nexusVersion: "nexus3", 
-                             protocol: "http", 
-                             nexusUrl: "192.168.112.65:8081", 
-                             groupId: pom.groupId, 
-                             version: pom.version, 
-                             repository: "maven-releases", 
-                             credentialsId: "58e80141-1d28-4dab-b6b7-577f962ba74e", 
+                             nexusVersion:"nexus3", 
+                             protocol:"http", 
+                             nexusUrl:"192.168.112.65:8081", 
+                             groupId:pom.groupId, 
+                             version:pom.version, 
+                             repository:"maven-releases", 
+                             credentialsId:"58e80141-1d28-4dab-b6b7-577f962ba74e", 
                              artifacts: [ 
-                                 [artifactId: pom.artifactId, 
-                                 classifier: '', 
-                                 file: artifactPath, 
-                                 type: pom.packaging], 
+                                 [artifactId:pom.artifactId, 
+                                 classifier:'', 
+                                 file:artifactPath, 
+                                 type:pom.packaging], 
   
-                                 [artifactId: pom.artifactId, 
-                                 classifier: '', 
-                                 file: "pom.xml", 
-                                 type: "pom"] 
+                                 [artifactId:pom.artifactId, 
+                                 classifier:'', 
+                                 file:"pom.xml", 
+                                 type:"pom"] 
                              ] 
                          ); 
   
                      } else{ 
-                         error "* File could not be found"; 
+                         error"* File could not be found"; 
                      } 
                  } 
              } 
