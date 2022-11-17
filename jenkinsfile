@@ -64,7 +64,7 @@ pipeline {
         steps{
 	
 	       sh 'docker login -u oussemajerfel -p 181JMT0601 '
-	       sh 'docker push --disable-content-trust oussemajerfel/achat-1.0:latest'
+	      // sh 'docker push --disable-content-trust oussemajerfel/achat-1.0:latest'
             
 	    
         }
@@ -73,7 +73,7 @@ pipeline {
      stage('DOCKER COMPOSE') {
                  steps {
 		     echo " Docker Compose"
-                     //sh 'docker-compose up -d --build'
+                     sh 'docker-compose up -d --build'
 		     
                    }
               }
