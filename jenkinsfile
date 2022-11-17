@@ -38,7 +38,9 @@ pipeline {
           stage("Sonar") {
         steps {
 
-       sh "mvn sonar:sonar"
+       sh '''mvn sonar:sonar
+       docker stop sonar '''
+       
   
   
                }
@@ -46,7 +48,11 @@ pipeline {
        
      stage('Nexus'){
             steps{
-                sh """mvn deploy """
+                sh """
+		docker start nexus
+		sleep 240
+		mvn deploy """
+		
             }
         } 
         
