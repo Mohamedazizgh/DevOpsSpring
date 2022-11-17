@@ -44,7 +44,7 @@ pipeline {
             }
             
         }
-            stage("Sonar") {
+            /*  stage("Sonar") {
         steps {
 
          sh"  mvn sonar:sonar \
@@ -56,7 +56,7 @@ pipeline {
   
                }
      }
-        stage("nexus") {
+      stage("nexus") {
         steps{
          
            sh 'mvn deploy -DgroupId=tn.esprit.rh -DartifactId=achat -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.112.65:8081/repository/maven-releases/  -Dfile=target/achat-1.0.jar'
@@ -80,7 +80,7 @@ pipeline {
 		      
                       sh 'docker-compose up -d --build'
                    }
-              } 
+              } */
     }
 	post {
 		always {
