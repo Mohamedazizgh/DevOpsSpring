@@ -2,18 +2,18 @@ version: "3"
 services:
   mysqldb:
     image: mysql:5.7
-    container_name: mysql
+    container_name: SQLdb
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: Devops
+     
     ports:
-      - 3308:3308
+      - 3306:3306
   spring-boot:
-     depends_on:
-      - mysqldb
+    depends_on:
+     - mysqldb
     image: oussemajerfel/achat-1.0
     restart: always
     ports:
       - 8089:8089
-    container_name: spring_boot
+    container_name: fournisseur
