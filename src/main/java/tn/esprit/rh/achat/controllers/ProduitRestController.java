@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @RestController
-@CrossOrigin("http://192.168.1.13:8089/SpringMVC/")
+@CrossOrigin("*")
 @Api(tags = "Gestion des produits")
 @RequestMapping("/produit")
 public class ProduitRestController {
