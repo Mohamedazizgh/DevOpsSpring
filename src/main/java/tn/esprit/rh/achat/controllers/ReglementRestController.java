@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @Api(tags = "Gestion des reglements")
 @RequestMapping("/reglement")
-@CrossOrigin("http://192.168.1.13:8089/SpringMVC/")
+@CrossOrigin("*")
 public class ReglementRestController {
 
     @Autowired
