@@ -59,10 +59,10 @@ pipeline {
        stage("Publish to nexus"){ 
              steps{ 
                  script{ 
-                     pom = readMavenPom file: "pom.xml"; 
-                     filesByGlob = findFiles(glob: "target/*.${pom.packaging}"); 
-                     artifactPath = filesByGlob[0].path; 
-                     artifactExists = fileExists artifactPath; 
+                     pom= readMavenPom file: "pom.xml"; 
+                     filesByGlob= findFiles(glob: "target/*.${pom.packaging}"); 
+                     artifactPath= filesByGlob[0].path; 
+                     artifactExists= fileExists artifactPath; 
                       
                      if(artifactExists){ 
                           
