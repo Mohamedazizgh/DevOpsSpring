@@ -57,14 +57,14 @@ pipeline {
                }
      }
        stage("Publish to nexus"){ 
-             steps { 
-                 script { 
+             steps{ 
+                 script{ 
                      pom = readMavenPom file: "pom.xml"; 
                      filesByGlob = findFiles(glob: "target/*.${pom.packaging}"); 
                      artifactPath = filesByGlob[0].path; 
                      artifactExists = fileExists artifactPath; 
                       
-                     if(artifactExists) { 
+                     if(artifactExists){ 
                           
                          nexusArtifactUploader( 
                              nexusVersion: "nexus3", 
@@ -87,7 +87,7 @@ pipeline {
                              ] 
                          ); 
   
-                     } else { 
+                     } else{ 
                          error "* File could not be found"; 
                      } 
                  } 
