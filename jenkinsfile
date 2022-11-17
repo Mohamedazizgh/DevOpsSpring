@@ -34,7 +34,7 @@ pipeline {
 	    '''
             }
         }
-        
+        /*
           stage("Sonar") {
         steps {
 
@@ -69,7 +69,7 @@ pipeline {
                     sh 'docker push  snoussi22/achat-1.0:latest'
                 }
         }
-        
+        */
         stage('DockerCompose') {
               steps {
                   sh "docker-compose  up -d  "
