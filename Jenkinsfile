@@ -60,7 +60,7 @@ pipeline {
             steps {
                 script {
                     pom = readMavenPom file: "pom.xml";
-                    filesByGlob = findFiles(glob: "target/*.${pom.packaging}");
+			filesByGlob = findFiles(glob: "target/achat-${pom.version}.${pom.packaging}");
                     artifactPath = filesByGlob[0].path;
                     artifactExists = fileExists artifactPath;
                     
