@@ -10,9 +10,19 @@ pipeline {
                 git branch: 'salma', url: 'https://github.com/Mohamedazizgh/DevOpsSpring.git',
                 credentialsId:"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";
                 
-            }
-}
-        
+               }
+                    }
+      
+	    
+	       stage("MVN Install and Clean"){
+            steps {
+                sh """mvn install """
+		sh """mvn clean -e """
+                
+              }
+           } 
+	    
+	        
        stage('Maven Compile'){
             steps {
                 sh """mvn -version  """
@@ -23,25 +33,16 @@ pipeline {
         }
         
    
-           stage("MVN Install and Clean"){
+	        stage("JUint"){
             steps {
-                sh """mvn install """
-		sh """mvn clean -e """
-                
-            }
-        }
-      
-	    
-	        stage("Test unitaire"){
-            steps {
-                sh """mvn test  """
+                sh """mvn test """
                 
             }
         }
         
         
 
-             stage('SonarQube analysis') {
+            stage('SonarQube analysis') {
       steps {
        
           sh "mvn clean  sonar:sonar \
