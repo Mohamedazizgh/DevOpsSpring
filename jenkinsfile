@@ -13,33 +13,18 @@ pipeline {
             }
 }
         
-       stage('MVN Package'){
+       stage('Maven '){
             steps {
-                sh """mvn -version  """
-                sh """java -version """
+             
                sh """mvn package -e """
+	       sh """mvn compile -e """
+	       sh """mvn install """
+	       sh """mvn clean -e """
             }
         }
         
-      stage("MVN Compile"){
-            steps {
-                sh """mvn compile -e """
-                
-            }
-        }
-           stage("MVN Install"){
-            steps {
-                sh """mvn install """
-                
-            }
-        }
-        stage("MVN Clean"){
-            steps {
-                sh """mvn clean -e """
-                
-            }
-        }
-           stage("Test Mock"){
+      
+           stage("Test unitaire"){
             steps {
                 sh """mvn test  """
                 
@@ -70,11 +55,12 @@ pipeline {
          stage("Build docker image") {
         steps{
            sh ' docker build -t oussemajerfel/achat-1.0:latest .'
+	   sh ' docker ps -a'
         }
         } 
            
            
-           stage("login to docker hub") {
+           stage("login and pushing  to docker hub") {
         steps{
 	
 	       sh 'docker login -u oussemajerfel -p 181JMT0601 '
@@ -86,17 +72,14 @@ pipeline {
          
      stage('DOCKER COMPOSE') {
                  steps {
-		      sh """mvn clean -e """
+		     echo " Docker Compose"
                      //sh 'docker-compose up -d --build'
+		     
                    }
               }
 	      
 	    
-        stage('Mailling') {
-            steps {
-                echo "Hello world"
-                    }
-            }
+        
         
   
 
@@ -105,8 +88,8 @@ pipeline {
       post{
         always{
             mail to: "oussemajerfel@gmail.com",
-            subject: "Test Email",
-            body: "Test"
+            subject: "jenkins File",
+            body: "Success"
         }
     }
 }
