@@ -13,33 +13,24 @@ pipeline {
             }
 }
         
-       stage('MVN Package'){
+       stage('Maven Compile'){
             steps {
                 sh """mvn -version  """
                 sh """java -version """
                sh """mvn package -e """
+		sh """mvn compile -e """
             }
         }
         
-      stage("MVN Compile"){
-            steps {
-                sh """mvn compile -e """
-                
-            }
-        }
-           stage("MVN Install"){
+   
+           stage("MVN Install and Clean"){
             steps {
                 sh """mvn install """
+		sh """mvn clean -e """
                 
             }
         }
-        stage("MVN Clean"){
-            steps {
-                sh """mvn clean -e """
-                
-            }
-        }
-	    
+      
 	    
 	        stage("Test unitaire"){
             steps {
@@ -65,29 +56,50 @@ pipeline {
    
  stage("nexus") {
         steps{
-           sh 'mvn deploy  -DgroupId=tn.esprit.rh -DartifactId=achat -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.100:8081/repository/maven-releases/  -Dfile=target/achat-1.0.jar'
+           sh 'mvn deploy \
+	     -DgroupId=tn.esprit.rh \
+	     -DartifactId=achat  \
+	     -Dversion=1.0 \
+	     -DgeneratePom=true \
+	     -Dpackaging=jar \
+	     -DrepositoryId=deploymentRepo \
+	     -Durl=http://192.168.1.100:8081/repository/maven-releases/ \
+	     -Dfile=target/achat-1.0.jar'
         }
        
         }
           stage("Build docker image") {
         steps{
            sh ' docker build -t salmazd/achat-1.0:latest .'
+	   echo " Build Success "
         }
         }
         
-               stage("login to docker hub") {
+	         stage("login to docker hub") {
         steps{
 	
 	       sh 'docker login -u salmazd -p sasazdzd1979 '
-	    // sh ' docker push --disable-content-trust salmazd/achat-1.0:latest'
+	   
             
 	    
         }
         }
-            stage('DOCKER COMPOSE') {
+               stage("push to docker hub") {
+        steps{
+	
+	     
+	    // sh ' docker push --disable-content-trust salmazd/achat-1.0:latest'
+             echo "Image pushed !!!"
+	     sh ' docker ps '
+	    
+        }
+        }
+            stage('docker compose') {
                  steps {
 		      
                      sh 'docker-compose up -d --build'
+		     echo " success "
+		    
                    }
               }
         
