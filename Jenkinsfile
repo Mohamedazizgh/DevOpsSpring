@@ -7,7 +7,7 @@ pipeline {
                 stage('git') {
             steps {
             
-                git branch: 'zeineb', url: 'https://github.com/Mohamedazizgh/DevOpsSpring.git',
+                git branch: 'zeineb', url: 'https://github.com/Mohamedazizgh/DevOpsSpring.git'
            
                 
             }
