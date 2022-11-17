@@ -56,12 +56,43 @@ pipeline {
   
                }
      }
-        stage("nexus") {
-        steps{
-           sh 'mvn deploy -DgroupId=tn.esprit.rh -DartifactId=achat -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.112.65:8081/repository/maven-releases/  -Dfile=target/achat-1.0.jar'
-        }
-       
-        }
+       stage("Publish to nexus") { 
+             steps { 
+                 script { 
+                     pom = readMavenPom file: "pom.xml"; 
+                     filesByGlob = findFiles(glob: "target/*.${pom.packaging}"); 
+                     artifactPath = filesByGlob[0].path; 
+                     artifactExists = fileExists artifactPath; 
+                      
+                     if(artifactExists) { 
+                          
+                         nexusArtifactUploader( 
+                             nexusVersion: "nexus3", 
+                             protocol: "http", 
+                             nexusUrl: "192.168.112.65:8081", 
+                             groupId: pom.groupId, 
+                             version: pom.version, 
+                             repository: "maven-releases", 
+                             credentialsId: "58e80141-1d28-4dab-b6b7-577f962ba74e", 
+                             artifacts: [ 
+                                 [artifactId: pom.artifactId, 
+                                 classifier: '', 
+                                 file: artifactPath, 
+                                 type: pom.packaging], 
+  
+                                 [artifactId: pom.artifactId, 
+                                 classifier: '', 
+                                 file: "pom.xml", 
+                                 type: "pom"] 
+                             ] 
+                         ); 
+  
+                     } else { 
+                         error "* File could not be found"; 
+                     } 
+                 } 
+             } 
+         }
           stage("Build docker image") {
         steps{
            sh ' docker build -t mhamedazizghorbel/achat-1.0 .'
