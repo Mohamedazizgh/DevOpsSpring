@@ -81,8 +81,17 @@ pipeline {
                       sh 'docker-compose up -d --build'
                    }
               } 
-   
-       
-      
     }
+	post {
+		always {
+
+		    emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
+			to: 'mohamedaziz.ghorbel@esprit.tn',
+			subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+
+		}
+    	}
+
+
+
 }
