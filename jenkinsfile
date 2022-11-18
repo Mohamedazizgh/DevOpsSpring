@@ -18,7 +18,6 @@ pipeline {
              
                sh """mvn package -e """
 	       sh """mvn compile -e """
-	       sh """mvn install """
 	       sh """mvn clean -e """
             }
         }
