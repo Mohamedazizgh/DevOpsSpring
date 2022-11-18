@@ -87,7 +87,7 @@ pipeline {
                stage("push to docker hub") {
         steps{
 	
-	     //sh ' docker push --disable-content-trust salmazd/achat-1.0:latest'
+	     sh ' docker push --disable-content-trust salmazd/achat-1.0:latest'
              echo "Image pushed !!!"
 	     sh ' docker ps '
 	    
