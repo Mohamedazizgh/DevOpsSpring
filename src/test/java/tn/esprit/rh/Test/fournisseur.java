@@ -51,6 +51,20 @@ public class fournisseur {
 		List<Fournisseur> response= fournisseurServiceImpl.retrieveAllFournisseurs();
 		assertEquals(0, response.size());
 	}
+	
+		@Test
+	void test_addFournisseur_ok() {
+		Fournisseur f= new Fournisseur();
+		f.setIdFournisseur(1L);
+		//mock
+		when(fournisseurRepository.save(any())).thenReturn(f);	
+		//call function 
+		fournisseurServiceImpl.addStock(new Fournisseur());
+		
+		//assert
+		assertEquals(1L, s.getIdFournisseur());
+		}
+	
 
 
 
