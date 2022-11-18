@@ -64,11 +64,13 @@ pipeline {
         }
           stage("Build docker image") {
         steps{
+		echo"test"
         //   sh ' docker build -t mhamedazizghorbel/achat-1.0 .'
         }
         } 
         stage("Publish  image to docker hub") {
         steps{
+		echo"test"
      //    withCredentials([string(credentialsId: 'dockerpwd', variable: 'docker')])  {
             // sh'docker login -u  mhamedazizghorbel -p ${docker} docker.io'
         // }
@@ -77,7 +79,7 @@ pipeline {
         }
          stage('DOCKER COMPOSE') {
                  steps {
-		      
+		      echo"test"
                       //sh 'docker-compose up -d --build'
                    }
               } 
