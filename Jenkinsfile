@@ -1,7 +1,6 @@
 pipeline {
     agent any
 
-  
     stages {
         
                 stage('git') {
@@ -13,27 +12,27 @@ pipeline {
                }
                     }
       
-	    
-	       stage("MVN Install and Clean"){
-            steps {
-                sh """mvn install """
-		sh """mvn clean -e """
-                
-              }
-           } 
+	    	    
+	       stage ('Artifact construction') {
+            steps{
+                sh '''
+		mvn clean
+                mvn  package
+                '''
+            }
+        } 
 	    
 	        
        stage('Maven Compile'){
             steps {
                 sh """mvn -version  """
                 sh """java -version """
-               sh """mvn package -e """
 		sh """mvn compile -e """
             }
         }
         
    
-	        stage("JUint"){
+	        stage(" Test Mockito "){
             steps {
                 sh """mvn test """
                 
