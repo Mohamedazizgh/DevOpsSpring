@@ -59,10 +59,10 @@ public class fournisseur {
 		//mock
 		when(fournisseurRepository.save(any())).thenReturn(f);	
 		//call function 
-		fournisseurServiceImpl.addStock(new Fournisseur());
+		fournisseurServiceImpl.addFournisseur(new Fournisseur());
 		
 		//assert
-		assertEquals(1L, s.getIdFournisseur());
+		assertEquals(1L, f.getIdFournisseur());
 		}
 	
 
