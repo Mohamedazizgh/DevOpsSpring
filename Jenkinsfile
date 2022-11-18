@@ -44,7 +44,7 @@ pipeline {
             }
             
         }
-            /*  stage("Sonar") {
+              stage("Sonar") {
         steps {
 
          sh"  mvn sonar:sonar \
@@ -80,7 +80,7 @@ pipeline {
 		      
                       sh 'docker-compose up -d --build'
                    }
-              } */
+              } 
     }
 	post {
 		always {
