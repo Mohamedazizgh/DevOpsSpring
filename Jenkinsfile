@@ -64,21 +64,21 @@ pipeline {
         }
           stage("Build docker image") {
         steps{
-           sh ' docker build -t mhamedazizghorbel/achat-1.0 .'
+        //   sh ' docker build -t mhamedazizghorbel/achat-1.0 .'
         }
         } 
         stage("Publish  image to docker hub") {
         steps{
-         withCredentials([string(credentialsId: 'dockerpwd', variable: 'docker')])  {
-             sh'docker login -u  mhamedazizghorbel -p ${docker} docker.io'
-         }
-            sh' docker push mhamedazizghorbel/achat-1.0:latest'
+     //    withCredentials([string(credentialsId: 'dockerpwd', variable: 'docker')])  {
+            // sh'docker login -u  mhamedazizghorbel -p ${docker} docker.io'
+        // }
+           // sh' docker push mhamedazizghorbel/achat-1.0:latest'
         }
         }
          stage('DOCKER COMPOSE') {
                  steps {
 		      
-                      sh 'docker-compose up -d --build'
+                      //sh 'docker-compose up -d --build'
                    }
               } 
     }
