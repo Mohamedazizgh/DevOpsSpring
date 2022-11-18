@@ -42,7 +42,7 @@ pipeline {
         
         
 
-            stage('SonarQube analysis') {
+            stage('SonarQube') {
       steps {
        
           sh "mvn clean  sonar:sonar \
